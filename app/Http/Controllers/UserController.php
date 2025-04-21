@@ -140,7 +140,14 @@ class UserController extends Controller
 
        }
 
-       
+       public function logout(Request $request){
+
+               $email = $request->headers->get('email');
+               $id = $request->headers->get('id');
+               return response()->json(['email'=>$email,'id'=>$id],200);
+       }
+
+
 
        public function sentOpt(Request $request){
           
@@ -197,7 +204,7 @@ class UserController extends Controller
             
              User::where('email',$email)->update(['password' => $request->input('password')]);
              Cookie::queue(Cookie::forget('postoken'));
-             return response()->json(['message' => 'Password reset successfully!'], 200);
+             return response()->json(['status'=>'success','message' => 'Password reset successfully!'], 200);
             
        }
 

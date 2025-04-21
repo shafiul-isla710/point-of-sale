@@ -51,7 +51,7 @@
                     
                         placeholder="Password"
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        v-model="otp"
+                        v-model="password"
                     />
                 </div>
                <button type="submit"  class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">Confirm</button>
@@ -80,18 +80,36 @@ import { useToast } from 'vue-toast-notification';
 const toast = useToast();
 const password = ref();
 
-const onSubmit = ()=>{
+
+
+async function onSubmit(){
 
     if(!password.value){
-        toast.error('Please enter your password', {
-            position: 'top-right',
-            duration: 3000,
-            dismissible: true,
-        });
+        toast.error('please enter your password',{
+            position:'top-right',
+        })
     }
     else{
-        axios.post('/')
+        const response = await axios.post('/reset-password',{
+            password:password.value,
+        })
 
+        if(response.data.status=='success'){
+            toast.success('Password reset successfully',{
+                position:'top-right',
+                duration:2000,
+            })
+
+            setTimeout(()=>{
+                window.location.href='/LoginPage';
+            },2000);
+        }
+        else{
+            toast.error('something went wrong',{
+                position:'top-right',
+                duration:2000,
+            })
+        }
     }
 }
 

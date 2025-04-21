@@ -19,6 +19,7 @@ Route::post('/login',[UserController::class,'userLogin']);
 Route::post('/sent-opt',[UserController::class,'sentOpt']);
 Route::post('/verify-otp',[UserController::class,'verifyOtp']);
 Route::post('reset-password',[UserController::class,'resetPassword'])->middleware([AuthenticationMiddleware::class]);
+Route::get('/logout',[UserController::class,'logout'])->middleware([AuthenticationMiddleware::class]);
 
 //user 
 Route::get('/users',[UserController::class,'getUser']);
