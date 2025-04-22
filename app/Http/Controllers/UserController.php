@@ -142,9 +142,10 @@ class UserController extends Controller
 
        public function logout(Request $request){
 
-               $email = $request->headers->get('email');
-               $id = $request->headers->get('id');
-               return response()->json(['email'=>$email,'id'=>$id],200);
+          Cookie::queue(Cookie::forget('postoken'));
+          return response()->json(['status'=>true,'message' => 'User logged out successfully!'], 200);
+             
+
        }
 
 

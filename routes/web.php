@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\AuthenticationMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\AuthenticationMiddleware;
 
-
+//user font end page routes
 Route::get('/',[UserController::class, 'homePage']);
 Route::get('/registrationPage',[UserController::class, 'registrationPage']);
 Route::get('/LoginPage',[UserController::class, 'loginPage']);
@@ -12,8 +13,12 @@ Route::get('/forgetPass',[UserController::class, 'sentOtp']);
 Route::get('/verifyOtpPage',[UserController::class, 'verifyOtpPage']);
 Route::get('/resetPassword',[UserController::class, 'resetPasswordPage']);
 
-//api routes
+//Dashboard page routes
 
+Route::get('/dashboard',[DashboardController::class, 'dashboardPage'])->middleware([AuthenticationMiddleware::class]);
+
+
+//api routes
 Route::post('/Registration',[UserController::class,'userRegistration']);
 Route::post('/login',[UserController::class,'userLogin']);
 Route::post('/sent-opt',[UserController::class,'sentOpt']);

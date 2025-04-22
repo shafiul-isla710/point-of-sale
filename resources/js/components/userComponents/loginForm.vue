@@ -66,7 +66,14 @@ const onSubmit = async () => {
             password: password.value
          })
          if(response.data['status'] == true && response.status == 200){
-            toast.success('Login success');
+            toast.success('Login success',{
+                position:'top-right',
+                duration:2000,
+            });
+
+            setTimeout(()=>{
+                window.location.href = '/dashboard';
+            },2000);
          }
          
        }
