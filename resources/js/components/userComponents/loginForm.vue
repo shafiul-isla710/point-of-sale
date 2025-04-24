@@ -74,6 +74,8 @@ const onSubmit = async () => {
             setTimeout(()=>{
                 window.location.href = '/dashboard';
             },2000);
+
+            localStorage.setItem('user', JSON.stringify(response.data['data']));
          }
          
        }

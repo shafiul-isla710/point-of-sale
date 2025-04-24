@@ -20,14 +20,15 @@ class AuthenticationMiddleware
         $token = $request->cookie('postoken');
 
         $result = JWTToken::verifyToken($token);
-        $email = $result->email;
-        $id = $result->id;
+       
 
         if ($result == "unauthorized") {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return redirect('/LoginPage')->with('error', 'Unauthorized access');
         }
 
         else{
+            $email = $result->email;
+            $id = $result->id;
             $request->headers->set('email',$email);
             $request->headers->set('id',$id);
             return $next($request);

@@ -11,11 +11,12 @@ Route::get('/registrationPage',[UserController::class, 'registrationPage']);
 Route::get('/LoginPage',[UserController::class, 'loginPage']);
 Route::get('/forgetPass',[UserController::class, 'sentOtp']);
 Route::get('/verifyOtpPage',[UserController::class, 'verifyOtpPage']);
-Route::get('/resetPassword',[UserController::class, 'resetPasswordPage']);
+Route::get('/resetPassword',[UserController::class, 'resetPasswordPage'])->middleware([AuthenticationMiddleware::class]);
 
 //Dashboard page routes
 
 Route::get('/dashboard',[DashboardController::class, 'dashboardPage'])->middleware([AuthenticationMiddleware::class]);
+Route::get('/ProfilePage',[DashboardController::class, 'profilePage'])->middleware([AuthenticationMiddleware::class]);
 
 
 //api routes
@@ -28,3 +29,4 @@ Route::get('/logout',[UserController::class,'logout'])->middleware([Authenticati
 
 //user 
 Route::get('/users',[UserController::class,'getUser']);
+Route::get('/user/{id}',[UserController::class, 'getUserById']);

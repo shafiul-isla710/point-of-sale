@@ -67,12 +67,13 @@ class UserController extends Controller
                 $email = $request->input('email');
                  $mobile = $request->input('mobile');
                 $password = $request->input('password');
-                $imageName = null;
+                $profile_image = null;
                 
                 if($request->hasFile('image')){
                     $image = $request->file('image');
-                    $imageName = time().".".$image->getClientOriginalExtension();
-                    $image->move(public_path('images'), $imageName);
+                    $imageName = 'profile_image'.time().".".$image->extension();
+                    $image->storeAs('profile_images', $imageName, 'public');
+                    $profile_image = 'storage/profile_images/'.$imageName;
                 }
                
 
@@ -85,7 +86,7 @@ class UserController extends Controller
                    'email' => $email,
                    'mobile' => $mobile,
                    'password' => $password,
-                   'image'=>$imageName
+                   'image'=>$profile_image,
 
                ]);
 
@@ -119,14 +120,13 @@ class UserController extends Controller
                 $id = User::where('email',$email)->orWhere('name',$name)->where('password',$password)->select('id')->first();
                 // $count =  User::where('name',$name)->orWhere('email',$email)->where('password',$password)->count();
                 $count = User::where('email',$email)->where('password',$password)->count();
+                $user = User::where('email',$email)->first();
 
-                
-            
                 if($count > 0){
     
                      $token = JWTToken::createToken($email,$id['id']);
     
-                     return response()->json(['status'=>true,'message' => 'User logged in successfully!','token' => $token,'id' => $id['id']], 200)->cookie('postoken',$token,60*24);
+                     return response()->json(['status'=>true,'message' => 'User logged in successfully!','token' => $token,'data' => $user], 200)->cookie('postoken',$token,60*24);
                 }
                 else{
                     return response()->json( ['status'=>false,'message' => 'Invalid credentials!'], 401);
@@ -216,6 +216,6 @@ class UserController extends Controller
            return response()->json(['user' => $user], 200);
        }
       
-
+    
         
 }

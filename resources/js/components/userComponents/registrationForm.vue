@@ -14,7 +14,7 @@
         </section>
 
         <section class="mt-10">
-            <form action="#" @submit.prevent="onSubmit()" class="space-y-4">
+            <form action="#" @submit.prevent="onSubmit()" class="space-y-4" enctype="multipart/form-data" >
             <!-- Name Field -->
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
@@ -30,7 +30,7 @@
             <!-- Mobile Field -->
             <div>
                 <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
-                <input v-model="form.mobile" type="number" id="mobile" name="mobile" placeholder="Enter your mobile number" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" >
+                <input v-model="form.mobile" type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" >
             </div>
 
             <!-- Password Field -->
@@ -40,10 +40,10 @@
             </div>
 
             <!-- Confirm Password Field -->
-            <!-- <div>
-                <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input v-model="form.image" type="file" id="confirm-password" name="confirm_password" placeholder="Confirm your password" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
-            </div> -->
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700">File or Image</label>
+                <input type="file" id="confirm-password" name="confirm_password" placeholder="Confirm your password" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" @change="imageHandle" >
+            </div>
 
             <!-- Submit Button -->
             <div>
@@ -69,13 +69,20 @@ import { useToast } from 'vue-toast-notification';
 
 const toast = useToast();
 
+
+
 const form = useForm({
     name: '',
     email: '',
     mobile: '',
     password: '',
+    image:''
     
 });
+
+const imageHandle =(event)=>{
+    form.image = event.target.files[0];
+}
 
 const page = usePage();
 
