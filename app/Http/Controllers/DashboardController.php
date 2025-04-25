@@ -12,7 +12,7 @@ class DashboardController extends Controller
         return Inertia::render('UserDashboardPage');
     }
     public function profilePage(){
-        return Inertia::render('ProfilePage');
+        return Inertia::render('profilePage');
     }
 
 

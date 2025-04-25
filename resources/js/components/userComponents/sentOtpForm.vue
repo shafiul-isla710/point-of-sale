@@ -16,7 +16,7 @@
                       
                 <div class="flex gap-12">
                     <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 p-4 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Sent OTP</button>
-                    <Link  href="/verifyOtpPage" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Cancel</Link>
+                    <Link  href="/LoginPage" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Cancel</Link>
                 </div>
 
              <div class="max-w-lg mx-auto text-center mt-12 mb-6">

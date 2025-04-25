@@ -41,8 +41,7 @@ class UserController extends Controller
     }
 
        public function userRegistration(Request $request)
-       {
-                            
+       {                 
                try {
 
                $validator = Validator::make($request->all(),[
@@ -61,8 +60,6 @@ class UserController extends Controller
                     $data = ['message'=>"User Registration Failed",'status'=>false,'error'=> $validator->errors()];
                     return redirect('/registrationPage')->with($data);
                 }
-
-
                 $name = $request->input('name');
                 $email = $request->input('email');
                  $mobile = $request->input('mobile');
@@ -140,6 +137,29 @@ class UserController extends Controller
 
        }
 
+       public function updateUserData(Request $request){
+
+           try{
+            $request->validate([
+                'name'=>'required',
+                
+                'mobile'=>'required',
+                'password'=>'required',
+                
+            ]);
+            User::where('id',$request->id)->update([
+                 'name'=>$request->input('name'),
+                 
+                 'mobile'=>$request->input('mobile'),
+                 'password'=>$request->input('password'),
+            ]);
+            return response()->json(['status'=>'success','message' => 'User data updated successfully!'], 200);
+           }
+              catch (\Exception $e) {
+                return response()->json(['status'=>'failed','message' => 'Failed to update user data!'], 500);
+              }
+       }
+
        public function logout(Request $request){
 
           Cookie::queue(Cookie::forget('postoken'));
@@ -150,6 +170,7 @@ class UserController extends Controller
 
 
 
+       //If any user forgets his password, he can reset it by sending an OTP to his email.
        public function sentOpt(Request $request){
           
             try{

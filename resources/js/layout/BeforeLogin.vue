@@ -3,7 +3,7 @@
 
 <template>
 
-    <div class="bg-gray-100 font-sans max-h-screen ">
+    <div class="bg-gray-100 font-sans h-[100vh]">
       <!-- Navbar -->
       <nav class="bg-white shadow p-4 flex justify-between items-center relative">
         <div class="flex flex-row gap-5" >
@@ -23,11 +23,11 @@
               <div class="h-12 w-12 rounded-full ring-2 ring-blue-400 mx-auto ">
                    <img class="h-12 w-12 rounded-full" v-if="user.image" :src="`${url}${user.image}`" alt="">
                 </div>
-                <h1 class="text-lg font-bold ">User Name :{{ user.name }}</h1>
+                <h1 class="text-sm font-bold ">User Name :{{ user.name }}</h1>
             </div>
            
             <div class="flex flex-col gap-2 mt-2">
-                <button class=" hover:border-b-2 border-indigo-500 p-2 hover:bg-red-50 text-left mt-2">Profile</button>
+                <Link href="/ProfilePage" class=" hover:border-b-2 border-indigo-500 p-2 hover:bg-red-50 text-left mt-2">Profile</Link>
                 <button @click="logout()" class=" hover:border-b-2 border-indigo-500 p-2 hover:bg-red-50 text-left">Logout</button>
             </div>
             
@@ -44,7 +44,7 @@
          class="w-64 bg-white shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
          :class="{ '-translate-x-full': !clicked, 'translate-x-0': clicked }">
           <nav class="space-y-4">
-            <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
+            <Link href="/dashboard" class="block text-gray-700 hover:text-blue-600">Dashboard</Link>
             <a href="#" class="block text-gray-700 hover:text-blue-600">Products</a>
             <a href="#" class="block text-gray-700 hover:text-blue-600">Categories</a>
             <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
@@ -65,11 +65,10 @@
         <!-- Main Content -->
         <main class="flex-1 p-6">
           <h2 class="text-2xl font-semibold text-gray-700 mb-6">Overview</h2>
+           <slot>
+
+           </slot>
            
-          <slot>
-            
-          </slot>
-        
         </main>
       </div>
     </div>
@@ -112,12 +111,12 @@
          }
      }
 
-      const userData = localStorage.getItem('user');
+    const userData = localStorage.getItem('user');
     const user = JSON.parse(userData);
 
     const url = 'http://127.0.0.1:8000/'
 
-    console.log(user.image)
+   
     
     
     </script>
