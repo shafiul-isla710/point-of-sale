@@ -24,6 +24,10 @@ class User extends Authenticatable
         'updated_at',
     ];
 
+    protected function category(){
+        return $this->hasMany(Category::class);
+    }
+
     
     // protected function casts(): array
     // {

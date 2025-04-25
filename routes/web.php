@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
@@ -31,3 +32,13 @@ Route::get('/logout',[UserController::class,'logout'])->middleware([Authenticati
 //user 
 Route::get('/users',[UserController::class,'getUser']);
 Route::get('/user/{id}',[UserController::class, 'getUserById']);
+
+
+//group Middleware
+Route::middleware([AuthenticationMiddleware::class])->group(function(){
+    //Category routes
+    Route::post('/create-category',[CategoryController::class,'createCategory']);
+    Route::get('/category-list',[CategoryController::class,'categoryList']);
+    Route::delete('/delete-category/{id}',[CategoryController::class,'destroyCategory']);
+    Route::put('/update-category/{id}',[CategoryController::class,'updateCategoryName']);
+});
