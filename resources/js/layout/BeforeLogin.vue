@@ -38,21 +38,21 @@
 
       </nav>
     
-      <div class="flex">
+      <div class="flex ">
         <!-- Sidebar -->
         <aside  v-show="clicked"
-         class="w-64 bg-white shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
+         class="w-64 bg-gray-300  shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
          :class="{ '-translate-x-full': !clicked, 'translate-x-0': clicked }">
-          <nav class="space-y-4">
+          <nav class="space-y-4 ">
             <Link href="/dashboard" class="block text-gray-700 hover:text-blue-600">Dashboard</Link>
+            <Link href="/CategoryPage" class="block text-gray-700 hover:text-blue-600">Categories</Link>
             <a href="#" class="block text-gray-700 hover:text-blue-600">Products</a>
-            <a href="#" class="block text-gray-700 hover:text-blue-600">Categories</a>
             <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
           </nav>
         </aside>
     
-        <aside  v-show="!clicked"
-         class="w-40 bg-white shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
+        <aside  v-if="!clicked"
+         class="w-40 bg-black shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
          :class="{ '-translate-x-full': !clicked, 'translate-x-0': clicked }">
           <nav class="space-y-4">
             <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>

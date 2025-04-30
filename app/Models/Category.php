@@ -14,7 +14,7 @@ class Category extends Model
         'updated_at',
     ];
 
-    protected function user (){
+    public function user (){
         return $this->belongsTo(User::class);
     }
 }

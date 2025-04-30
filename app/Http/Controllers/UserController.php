@@ -72,11 +72,6 @@ class UserController extends Controller
                     $image->storeAs('profile_images', $imageName, 'public');
                     $profile_image = 'storage/profile_images/'.$imageName;
                 }
-               
-
-                // $image = $request->file('image');
-                // $imageName = time().".".$image->getClientOriginalExtension();
-                // $image->move(public_path('images'), $imageName);
             
                User::create([
                    'name' => $name,
@@ -89,19 +84,17 @@ class UserController extends Controller
 
                $data = ['message'=>"User Registration Successfully",'status'=>true,'error'=>''];
 
-                   return response()->json(['message'=>"User Registration Successfully",'status'=>true,'error'=>''], 200)->with($data);
-                // return redirect('/registrationPage')->with($data);
-                
-              
-
+                //    return response()->json(['message'=>"User Registration Successfully",'status'=>true,'error'=>''], 200)->with($data);
+                return back()->with($data);
+            
                 }
 
                 catch (\Exception $e) {
 
                     $data = ['message'=>"User Registration Failed",'status'=>false,'error'=>$e->getMessage()];
-                    // return redirect('/LoginPage')->with($data);
+                     return redirect('/registrationPage')->with($data);
 
-                    return response()->json(['message'=>"User Registration Failed",'status'=>false,'error'=>$e->getMessage()], 500);
+                    //  return response()->json(['message'=>"User Registration Failed",'status'=>false,'error'=>$e->getMessage()], 500);
                 }
                 
         }

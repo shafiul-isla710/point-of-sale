@@ -13,12 +13,7 @@ Route::get('/LoginPage',[UserController::class, 'loginPage']);
 Route::get('/forgetPass',[UserController::class, 'sentOtp']);
 Route::get('/verifyOtpPage',[UserController::class, 'verifyOtpPage']);
 Route::get('/resetPassword',[UserController::class, 'resetPasswordPage'])->middleware([AuthenticationMiddleware::class]);
-
-//Dashboard page routes
-
-Route::get('/dashboard',[DashboardController::class, 'dashboardPage'])->middleware([AuthenticationMiddleware::class]);
-Route::get('/ProfilePage',[DashboardController::class, 'profilePage'])->middleware([AuthenticationMiddleware::class]);
-
+ 
 
 //api routes
 Route::post('/Registration',[UserController::class,'userRegistration']);
@@ -36,9 +31,16 @@ Route::get('/user/{id}',[UserController::class, 'getUserById']);
 
 //group Middleware
 Route::middleware([AuthenticationMiddleware::class])->group(function(){
+    //Page routes
+    Route::get('/dashboard',[DashboardController::class, 'dashboardPage']);
+    Route::get('/ProfilePage',[DashboardController::class, 'profilePage']);
+    Route::get('/CategoryPage',[CategoryController::class, 'CategoryPage']);
+    Route::get('/categoryUpdatePage',[CategoryController::class, 'categoryUpdatePage']);
+
     //Category routes
     Route::post('/create-category',[CategoryController::class,'createCategory']);
     Route::get('/category-list',[CategoryController::class,'categoryList']);
-    Route::delete('/delete-category/{id}',[CategoryController::class,'destroyCategory']);
+    Route::get('/delete-category/{id}',[CategoryController::class,'destroyCategory']);
     Route::put('/update-category/{id}',[CategoryController::class,'updateCategoryName']);
+
 });
