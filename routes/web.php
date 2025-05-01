@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AuthenticationMiddleware;
 
@@ -42,5 +43,11 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::get('/category-list',[CategoryController::class,'categoryList']);
     Route::get('/delete-category/{id}',[CategoryController::class,'destroyCategory']);
     Route::put('/update-category/{id}',[CategoryController::class,'updateCategoryName']);
+
+    //Customer routes
+    Route::post('/create-customer',[CustomerController::class,'createCustomer']);
+    Route::get('/customer-list/{id}',[CustomerController::class,'getCustomer']);
+    Route::put('/update-customer/{id}',[CustomerController::class,'updateCustomer']);
+    Route::delete('/delete-customer/{id}',[CustomerController::class,'deleteCustomer']);
 
 });
