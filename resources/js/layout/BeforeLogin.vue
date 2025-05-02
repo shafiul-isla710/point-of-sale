@@ -41,13 +41,14 @@
       <div class="flex ">
         <!-- Sidebar -->
         <aside  v-show="clicked"
-         class="w-64 bg-gray-300  shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
+         class="w-64 bg-gray-700 text-white  shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
          :class="{ '-translate-x-full': !clicked, 'translate-x-0': clicked }">
           <nav class="space-y-4 ">
-            <Link href="/dashboard" class="block text-gray-700 hover:text-blue-600">Dashboard</Link>
-            <Link href="/CategoryPage" class="block text-gray-700 hover:text-blue-600">Categories</Link>
-            <a href="#" class="block text-gray-700 hover:text-blue-600">Products</a>
-            <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
+            <Link href="/dashboard" class="block  hover:text-blue-600">Dashboard</Link>
+            <Link href="/CategoryPage" class="block  hover:text-blue-600">Categories</Link>
+            <Link href="/CustomerPage" class="block  hover:text-blue-600">Customers</Link>
+            <a href="#" class="block hover:text-blue-600">Products</a>
+            <a href="#" class="block hover:text-blue-600">Reports</a>
           </nav>
         </aside>
     

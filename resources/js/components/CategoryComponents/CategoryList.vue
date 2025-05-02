@@ -89,7 +89,6 @@
 
 <script setup>
 import { usePage, Link, useForm, router } from "@inertiajs/vue3";
-import { set } from "nprogress";
 import { ref, onMounted } from "vue";
 import { useToast } from "vue-toast-notification";
 

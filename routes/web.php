@@ -35,8 +35,12 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     //Page routes
     Route::get('/dashboard',[DashboardController::class, 'dashboardPage']);
     Route::get('/ProfilePage',[DashboardController::class, 'profilePage']);
+
     Route::get('/CategoryPage',[CategoryController::class, 'CategoryPage']);
     Route::get('/categoryUpdatePage',[CategoryController::class, 'categoryUpdatePage']);
+
+    Route::get('/CustomerPage',[CustomerController::class, 'customerPage']);
+    Route::get('/customerEditPage',[CustomerController::class, 'customerEditPage']);
 
     //Category routes
     Route::post('/create-category',[CategoryController::class,'createCategory']);

@@ -4,10 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
     
+    /**
+     * render view
+     */
+    public function customerPage(Request $request){
+        $userId = $request->header('id');
+        $customers = Customer::where('user_id',$userId)->get();
+        return Inertia::render('CustomerPage',[
+            'customers'=>$customers,
+        ]);
+
+    }
+
+    public function customerEditPage(Request $request){
+        $id = $request->id;
+        $userId = $request->header('id');
+        $customer = Customer::where('user_id',$userId)->where('id',$id)->first();
+        return Inertia::render('CustomerEditPage',[
+            'customer'=>$customer,
+        ]);
+    }
+
     /**
      * Create Customer
      */
@@ -25,23 +47,16 @@ class CustomerController extends Controller
         $userId = $request->header('id');
         Customer::create($request->input() + ['user_id'=>$userId]);
 
-        // $data = ['message'=>'Customer Created Successfully','status'=>true,'error'=>''];
-        // return redirect()->back()->with($data);
-        return response()->json([
-            'message'=>'Customer Created Successfully',
-            'status'=>true,
-            'error'=>''
-        ], 200);
+        $data = ['message'=>'Customer Created Successfully','status'=>true,'error'=>''];
+        return redirect()->back()->with($data);
+       
 
       }
 
       catch(\Exception $e){
-        return response()->json([
-            'message'=>'Customer Creation Failed',
-            'status'=>false,
-            'error'=>$e->getMessage()
-        ]);
-
+    
+        $data = ['message'=>'Customer Creation Failed','status'=>false,'error'=>''];
+        return redirect()->back()->with($data);
       }
 
     }
@@ -89,28 +104,19 @@ class CustomerController extends Controller
           ]);
 
           if($result){
-            return response()->json([
-              'message'=>'Customer Updated Successfully',
-              'status'=>true,
-              'error'=>''
-          ], 200);
+             $data= ['message'=>'Customer Updated Successfully','status'=>true,'error'=>''];
+             return redirect()->back()->with($data);
           }
           else{
-            return response()->json([
-              'message'=>'Somethings went wrong',
-              'status'=>false,
-              'error'=>''
-          ]);
+             $data= ['message'=>'Customer Not Found','status'=>false,'error'=>''];
+             return redirect()->back()->with($data);
           }
 
          
       }
       catch(\Exception $e){
-          return response()->json([
-              'message'=>'Customer Update Failed',
-              'status'=>false,
-              'error'=>$e->getMessage()
-          ]);
+        $data= ['message'=>'Customer Update Failed','status'=>false,'error'=>''];
+        return redirect()->back()->with($data);
       }
 
     }
@@ -123,18 +129,14 @@ class CustomerController extends Controller
         $userId = $request->header('id');
         $result = Customer::where('id',$customerId)->where('user_id',$userId)->delete();
         if($result){
-            return response()->json([
-                'message'=>'Customer Deleted Successfully',
-                'status'=>true,
-                'error'=>''
-            ], 200);
+
+             $data = ['message'=>'Customer Deleted Successfully','status'=>true,'error'=>''];
+             return redirect()->back()->with($data);
+           
         }
         else{
-            return response()->json([
-                'message'=>'Somethings went wrong',
-                'status'=>false,
-                'error'=>''
-            ]);
+            $data = ['message'=>'Somethings went wrong','status'=>false,'error'=>''];
+            return redirect()->back()->with($data);
         }
     }
 
