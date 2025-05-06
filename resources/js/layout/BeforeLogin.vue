@@ -44,11 +44,23 @@
          class="w-64 bg-gray-700 text-white  shadow h-screen p-5 hidden md:block transition-all duration-5000 ease-in-out transform"
          :class="{ '-translate-x-full': !clicked, 'translate-x-0': clicked }">
           <nav class="space-y-4 ">
-            <Link href="/dashboard" class="block  hover:text-blue-600">Dashboard</Link>
-            <Link href="/CategoryPage" class="block  hover:text-blue-600">Categories</Link>
-            <Link href="/CustomerPage" class="block  hover:text-blue-600">Customers</Link>
-            <a href="#" class="block hover:text-blue-600">Products</a>
-            <a href="#" class="block hover:text-blue-600">Reports</a>
+            <div class="dbtn"> 
+              <Link href="/dashboard" class="block  ml-5 p-1">Dashboard</Link>
+            </div>
+            <div class="dbtn"> 
+              <Link href="/CategoryPage" class="block  ml-5 p-1">Category</Link>
+            </div>
+            <div class="dbtn"> 
+              <Link href="/CustomerPage" class="block  ml-5 p-1">Customer</Link>
+            </div>
+            <div class="dbtn"> 
+              <Link href="/product-page" class="block  ml-5 p-1">Product</Link>
+            </div>
+         
+            <!-- <Link href="/CategoryPage" class="block  hover:text-black hover:bg-red-100 hover:p-3 rounded-sm transition duration- delay-200 ">Categories</Link>
+            <Link href="/CustomerPage" class="block  hover:text-black hover:bg-red-100 hover:p-3 rounded-sm transition duration- delay-200 ">Customers</Link>
+            <Link href="/product-page" class="block hover:text-black hover:bg-red-100 hover:p-3 rounded-sm transition duration- delay-200 ">Products</Link> -->
+          
           </nav>
         </aside>
     

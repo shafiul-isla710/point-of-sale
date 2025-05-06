@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AuthenticationMiddleware;
 
 //user font end page routes
@@ -42,6 +43,8 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::get('/CustomerPage',[CustomerController::class, 'customerPage']);
     Route::get('/customerEditPage',[CustomerController::class, 'customerEditPage']);
 
+    Route::get('/product-page',[ProductController::class,'ProductPage']);
+
     //Category routes
     Route::post('/create-category',[CategoryController::class,'createCategory']);
     Route::get('/category-list',[CategoryController::class,'categoryList']);
@@ -53,5 +56,12 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::get('/customer-list/{id}',[CustomerController::class,'getCustomer']);
     Route::put('/update-customer/{id}',[CustomerController::class,'updateCustomer']);
     Route::delete('/delete-customer/{id}',[CustomerController::class,'deleteCustomer']);
+
+    //Product routes
+    Route::get('/product-list',[ProductController::class,'getAllProduct']);
+    Route::post('/create-product',[ProductController::class,'createProduct']);
+    Route::delete('/destroy-product/{id}',[ProductController::class,'destroyProduct']);
+    Route::get('/product/{id}',[ProductController::class,'productById']);
+    Route::post('/update-product/{id}',[ProductController::class,'updateProduct']);
 
 });
