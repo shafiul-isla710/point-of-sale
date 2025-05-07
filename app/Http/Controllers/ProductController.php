@@ -19,6 +19,14 @@ class ProductController extends Controller
         $products = Product::with('category')->where('user_id',$userId)->paginate(5);
         return Inertia::render('ProductPage',['products'=>$products]);
     }
+
+    public function ProductEditPage(Request $request){
+
+        $id = $request->id;
+        $product = Product::where('id',$id)->first();
+        return Inertia::render('ProductEditPage',['product'=>$product]);
+        
+    }
     
     public function getAllProduct(Request $request){
 
@@ -80,10 +88,10 @@ class ProductController extends Controller
     }
 
     public function destroyProduct(Request $request){
+
+
         $userId = $request->header('id');
         $id = $request->id;
-
-        
         $file_path = $request->input('file_path');
         File::delete($file_path);
         $result = Product::where('user_id',$userId)->where('id',$id)->delete();
@@ -147,7 +155,9 @@ class ProductController extends Controller
                 'category_id'=>$request->input('category_id')
             ]);
     
-            return response()->json(['status'=>true,'message'=>'Product updated successfully']);
+            $data = ['message'=>'Product updated successfully','status'=>true,'error'=>''];
+            return redirect()->back()->with($data);
+            // return response()->json(['status'=>true,'message'=>'Product updated successfully']);
 
         }
         else{
@@ -158,15 +168,20 @@ class ProductController extends Controller
                 'price'=>$request->input('price'),
                 'category_id'=>$request->input('category_id')
             ]);
+
     
-            return response()->json(['status'=>true,'message'=>'Product updated successfully']);
+            $data = ['message'=>'Product updated successfully','status'=>true,'error'=>''];
+            return redirect()->back()->with($data);
+            // return response()->json(['status'=>true,'message'=>'Product updated successfully']);
         }
 
       
       }
       
       catch(\Exception $e){
-        return response()->json(['status'=>false,'message'=>'Product updation failed','error'=>$e->getMessage()]);
+        $data = ['message'=>'Product updation failed','status'=>false,'error'=>$e->getMessage()];
+        return redirect()->back()->with($data);
+        // return response()->json(['status'=>false,'message'=>'Product updation failed','error'=>$e->getMessage()]);
       }
 
 

@@ -41,7 +41,7 @@
                     <td class="p-2 text-left w-40">{{ product.price }}</td>
                     <td class="p-2 text-left"><img :src="product.image" alt="" class="w-16 h-16 bg-gray-50 p-2 rounded-sm"></td>
                      <td class="flex flex-row gap-2 mt-6">
-                        <Link :href="`/editProduct/${product.id}`" class="border-2 border-green-300 hover:border-green-700 hover:bg-green-400 hover:text-white rounded-md py-1 px-4 transition ease-in-out duration-300">Edit</Link>
+                        <Link :href="`/product-edit?id=${product.id}`" class="border-2 border-green-300 hover:border-green-700 hover:bg-green-400 hover:text-white rounded-md py-1 px-4 transition ease-in-out duration-300">Edit</Link>
                         <button  @click="destroy(product.id)" class="border-2 ml-5 border-red-300  hover:border-red-700 hover:bg-red-600 hover:text-white  rounded-md py-1 px-4 transition ease-in-out duration-300">Delete</button>
                      </td>
                     
@@ -97,7 +97,9 @@
             </form>
         </div>
     </div>
-   
+
+
+  
 
 </template>
 
@@ -174,6 +176,7 @@ const saveProduct = () =>{
 
 }
 
+//product delete sections
 
 const destroy=(id)=>{
 

@@ -44,6 +44,7 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::get('/customerEditPage',[CustomerController::class, 'customerEditPage']);
 
     Route::get('/product-page',[ProductController::class,'ProductPage']);
+    Route::get('/product-edit',[ProductController::class, 'ProductEditPage']);
 
     //Category routes
     Route::post('/create-category',[CategoryController::class,'createCategory']);

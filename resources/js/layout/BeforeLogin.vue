@@ -51,7 +51,7 @@
               <Link href="/CategoryPage" class="block  ml-5 p-1">Category</Link>
             </div>
             <div class="dbtn"> 
-              <Link href="/CustomerPage" class="block  ml-5 p-1">Customer</Link>
+              <Link href="/CustomerPage" class="block  ml-5 p-1 w-full">Customer</Link>
             </div>
             <div class="dbtn"> 
               <Link href="/product-page" class="block  ml-5 p-1">Product</Link>
