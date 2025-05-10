@@ -10,6 +10,10 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function invoice(){
+        return $this->hasMany(Invoice::class);
+    }
+
     protected $fillable = ['name','email','mobile','address','user_id'];
 
     protected $hidden = [

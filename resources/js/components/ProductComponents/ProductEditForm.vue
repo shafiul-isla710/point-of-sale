@@ -92,7 +92,7 @@
                             >
                             <div  class="flex flex-row gap-5 items-center">
                                 <img class="w-20 h-20 bg-white" src="" alt="" />
-                                <input type="file" name="image" id="image" />
+                                <input type="file" name="image" id="image" @change="imageHandle" />
                             </div>
                         </div>
                     </div>
@@ -133,8 +133,13 @@ const form = useForm({
     description:products.description,
     price:products.price,
     category_id:products.category_id,
+    image:products.image,
     item_weight:products.item_weight,
 });
+
+const imageHandle = (event) => {
+    form.image = event.target.files[0];
+};
 
 const updateProduct = () =>{
     form.post(`/update-product/${products.id}`,{

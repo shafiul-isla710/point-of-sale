@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AuthenticationMiddleware;
 
 //user font end page routes
@@ -64,5 +65,11 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::delete('/destroy-product/{id}',[ProductController::class,'destroyProduct']);
     Route::get('/product/{id}',[ProductController::class,'productById']);
     Route::post('/update-product/{id}',[ProductController::class,'updateProduct']);
+
+    //Product routes
+    Route::post('/invoice-create',[InvoiceController::class, 'createInvoice']);
+    Route::get('/invoice-list',[InvoiceController::class, 'InvoiceList']);
+    Route::get('/invoiceDetails',[InvoiceController::class, 'InvoiceDetails']);
+    Route::delete('/invoice-delete',[InvoiceController::class, 'InvoiceDelete']);
 
 });
