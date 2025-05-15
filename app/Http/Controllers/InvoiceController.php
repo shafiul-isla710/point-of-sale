@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use Inertia\Inertia;
 use App\Models\Invoice;
-use App\Models\InvoiceProduct;
+use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Models\InvoiceProduct;
 use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
+
+    //Page
+
+    public function SalePage(){ 
+        $userId = request()->header('id');
+
+        $products = Product::where('user_id',$userId)->paginate(5);
+        $customer = Customer::where('user_id',$userId)->paginate(5);
+        return Inertia::render('SalePage',[
+            'products'=>$products,
+            'customers'=>$customer
+        ]);
+    }
     
     public function createInvoice(Request $request){
 

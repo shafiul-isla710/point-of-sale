@@ -64,10 +64,10 @@ class CustomerController extends Controller
     /**
      * Get Customer
      */
-    public function getCustomer(Request $request){
+    public function customerById(Request $request){
         $id =$request->id;
         $userId = $request->header('id');
-        $customer = Customer::with('user')->findOrFail($id)->where('user_id',$userId)->first();
+        $customer = Customer::with('user')->where('id',$id)->where('user_id',$userId)->first();
        
         if($customer){
             return response()->json([

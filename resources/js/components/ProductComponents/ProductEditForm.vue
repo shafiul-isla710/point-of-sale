@@ -91,7 +91,7 @@
                                 >Image</label
                             >
                             <div  class="flex flex-row gap-5 items-center">
-                                <img class="w-20 h-20 bg-white" src="" alt="" />
+                                <img class="w-20 h-20 bg-white" :src="form.image" alt="" />
                                 <input type="file" name="image" id="image" @change="imageHandle" />
                             </div>
                         </div>

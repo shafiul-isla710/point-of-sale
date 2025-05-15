@@ -5,6 +5,6 @@
 
 @layer components{
     .dbtn{
-        @apply  hover:text-black hover:bg-red-100 rounded-sm transition duration-100 delay-100 ease-in-out;
+        @apply  hover:text-black hover:bg-red-100 rounded-sm transition ease-in-out;
     }
 }

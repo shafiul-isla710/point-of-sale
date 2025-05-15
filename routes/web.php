@@ -47,6 +47,8 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
     Route::get('/product-page',[ProductController::class,'ProductPage']);
     Route::get('/product-edit',[ProductController::class, 'ProductEditPage']);
 
+    Route::get('/invoice-page',[InvoiceController::class, 'SalePage']);
+
     //Category routes
     Route::post('/create-category',[CategoryController::class,'createCategory']);
     Route::get('/category-list',[CategoryController::class,'categoryList']);
@@ -55,7 +57,7 @@ Route::middleware([AuthenticationMiddleware::class])->group(function(){
 
     //Customer routes
     Route::post('/create-customer',[CustomerController::class,'createCustomer']);
-    Route::get('/customer-list/{id}',[CustomerController::class,'getCustomer']);
+    Route::get('/customer/{id}',[CustomerController::class,'customerById']);
     Route::put('/update-customer/{id}',[CustomerController::class,'updateCustomer']);
     Route::delete('/delete-customer/{id}',[CustomerController::class,'deleteCustomer']);
 
